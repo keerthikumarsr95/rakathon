@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:momt/audio/audioManager.dart';
+import 'dart:developer' as developer;
+
+
+late AudioManager audioManager;
 
 void main() {
   runApp(MyApp());
+  audioManager = new AudioManager();
+  audioManager.load(1);
+  audioManager.listenToComplete((bool state){
+    if(state == true){
+      developer.log('Audio Completed', name: 'main.app');
+    }
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -48,7 +60,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-
+  // audioManager.init();
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -58,6 +70,11 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+    if (_counter % 2 == 0) {
+      audioManager.play();
+    } else {
+      audioManager.pause();
+    }
   }
 
   @override
