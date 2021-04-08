@@ -1,11 +1,15 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:momt/audio/audioManager.dart';
 import 'dart:developer' as developer;
 
+import 'package:momt/camera_screen.dart';
+
 
 late AudioManager audioManager;
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
   audioManager = new AudioManager();
   audioManager.load(1);
@@ -35,7 +39,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'MoMT Demo Home Page'),
+      home: CameraScreen(),
     );
   }
 }
