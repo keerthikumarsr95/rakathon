@@ -27,18 +27,7 @@ class ConversationalBot extends StatefulWidget {
 }
 
 class _ConversationalBotState extends State<ConversationalBot> {
-  List<ChatMessage> messages = [
-    ChatMessage(messageContent: "Hello, Will", messageType: "receiver"),
-    ChatMessage(messageContent: "How have you been?", messageType: "receiver"),
-    ChatMessage(
-        messageContent: "Maths?",
-        messageType: "sender",
-        mediaType: MediaType.audio,
-        mediaLink: "assets/images/q1.png"),
-    ChatMessage(messageContent: "ehhhh, doing OK.", messageType: "receiver"),
-    ChatMessage(
-        messageContent: "Is there any thing wrong?", messageType: "sender"),
-  ];
+  List<ChatMessage> messages = [];
 
   StreamService streamService = StreamService.instance;
 

@@ -1,4 +1,5 @@
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:emojis/emoji.dart'; // to use Emoji utilities
 
 enum TtsState { playing, stopped, paused, continued }
 
@@ -28,6 +29,7 @@ class TextToSpeechManager {
 
   speak(String text) async {
     ttlState = TtsState.playing;
+    text = text.replaceAll(emojiRegex, "");
     final result = await flutterTts.speak(text);
     if (result == 1) ttlState = TtsState.stopped;
     await flutterTts.awaitSpeakCompletion(true);
