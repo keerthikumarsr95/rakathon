@@ -1,23 +1,34 @@
+import 'dart:async';
+
 import 'package:assets_audio_player/assets_audio_player.dart';
 
 class AudioManager {
   late AssetsAudioPlayer assetsAudioPlayer;
+  Duration? audDuration;
 
   AudioManager() {
-    assetsAudioPlayer = AssetsAudioPlayer();
+    assetsAudioPlayer = AssetsAudioPlayer.withId("0");
   }
 
-  load(id) {
-    assetsAudioPlayer.open(Audio("assets/audios/audio_1.mp3"),
-        autoStart: false);
+  load(id) async {
+    audDuration = Duration(seconds: 136);
+    var audio = Audio("assets/audios/audio_$id.mp3");
+    print("audio $audio");
+    await assetsAudioPlayer.open(
+        Playlist(audios: [Audio("assets/audios/audio_$id.mp3")]),
+        autoStart: false,
+        forceOpen: true);
   }
 
-  pause() {
-    assetsAudioPlayer.pause();
+  pause() async {
+    await assetsAudioPlayer.pause();
   }
 
-  play() {
-    assetsAudioPlayer.play();
+  Future play() async {
+    // await assetsAudioPlayer.playOrPause();
+    await assetsAudioPlayer.play();
+    await assetsAudioPlayer.current.first
+        .then((value) => audDuration = value?.audio.duration);
   }
 
   stop() {
@@ -26,5 +37,17 @@ class AudioManager {
 
   listenToComplete(callback) {
     assetsAudioPlayer.playlistFinished.listen(callback);
+  }
+
+  Future awaitToComplete() async {
+    Completer c = new Completer();
+    assetsAudioPlayer.currentPosition.listen((Duration state) {
+      print("playlistFinished State ${state.inSeconds}");
+      print("playlistFinished c.isCompleted ${c.isCompleted}");
+
+      if (state.inSeconds == audDuration?.inSeconds && !c.isCompleted)
+        c.complete(state);
+    });
+    return c.future;
   }
 }

@@ -1,19 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:momt/audio/audioManager.dart';
-import 'dart:developer' as developer;
-
-
-late AudioManager audioManager;
 
 void main() {
   runApp(MyApp());
-  audioManager = new AudioManager();
-  audioManager.load(1);
-  audioManager.listenToComplete((bool state){
-    if(state == true){
-      developer.log('Audio Completed', name: 'main.app');
-    }
-  });
+  // ConversationManager.instance.start();
 }
 
 class MyApp extends StatelessWidget {
@@ -70,11 +59,6 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
-    if (_counter % 2 == 0) {
-      audioManager.play();
-    } else {
-      audioManager.pause();
-    }
   }
 
   @override
