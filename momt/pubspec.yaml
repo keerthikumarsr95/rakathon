@@ -34,6 +34,7 @@ dependencies:
   googleapis_auth: ^1.1.0
   http: ^0.13.1
   dio: ^4.0.0
+  page_view_indicator: ^2.0.4
 
 dev_dependencies:
   flutter_test:
@@ -44,7 +45,11 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
+  fonts:
+    - family: Open Sans
+      fonts:
+        - asset: assets/fonts/open-sans.semibold.ttf
+          style: italic
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -53,6 +58,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/audios/
+    - assets/images/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
