@@ -1,6 +1,8 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 //import 'package:momt/UI/pages/Login.dart';
 import 'package:momt/UI/pages/LoginNew.dart';
+
 import 'package:page_view_indicator/page_view_indicator.dart';
 
 class Pages {

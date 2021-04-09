@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:momt/conversation/conversationManager.dart';
 
 class KidsDashboard extends StatelessWidget {
+
+  KidsDashboard(){
+    ConversationManager.instance.start();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

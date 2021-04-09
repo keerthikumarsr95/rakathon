@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:momt/UI/ChatBot/BotUI.dart';
 import 'package:momt/UI/pages/WelcomePage.dart';
 
 Future<void> main() async {
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.pink,
       ),
-      home: WelcomeNew(),
+      home: ConversationalBot(),
     );
   }
 }
