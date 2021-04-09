@@ -31,6 +31,9 @@ dependencies:
   camera:
   path_provider:
   path:
+  googleapis_auth: ^1.1.0
+  http: ^0.13.1
+  dio: ^4.0.0
 
 dev_dependencies:
   flutter_test:
