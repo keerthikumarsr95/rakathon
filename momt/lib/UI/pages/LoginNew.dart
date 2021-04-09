@@ -31,7 +31,7 @@ class LoginNew extends StatelessWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
-                          fontSize: 40.0,
+                          fontSize: 30.0,
                           fontFamily: 'Open Sans')),
                 ]),
           ),
@@ -60,6 +60,12 @@ class ProfileCard extends StatelessWidget {
   final int index;
   ProfileCard({required this.index});
   final List<String> entries = <String>['Teacher', 'Mom', 'Student', 'Admin'];
+  final List<MaterialColor> colors = <MaterialColor>[
+    Colors.deepPurple,
+    Colors.pink,
+    Colors.blue,
+    Colors.orange
+  ];
   final List<IconData> categories = <IconData>[
     Icons.person_outline_rounded,
     Icons.home_outlined,
@@ -73,13 +79,13 @@ class ProfileCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           Container(
-              padding: EdgeInsets.symmetric(vertical: 40),
-              width: 140.0,
-              height: 140.0,
+              padding: EdgeInsets.symmetric(vertical: 30),
+              width: 120.0,
+              height: 120.0,
               child: Image.asset('assets/images/signIn/${entries[index]}.png'),
               decoration: new BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.accents[index],
+                color: colors[index],
               )),
           Text(entries[index]..toUpperCase(),
               style: TextStyle(

@@ -30,7 +30,7 @@
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:momt/preview_screen.dart';
+import 'package:momt/UnlockedMoodDetector.dart';
 
 class CameraScreen extends StatefulWidget {
   @override
@@ -51,7 +51,6 @@ class _CameraScreenState extends State {
     super.initState();
     isControllerInitialised = false;
     availableCameras().then((availableCameras) {
-
       cameras = availableCameras;
 
       if (cameras.length > 0) {
@@ -60,7 +59,7 @@ class _CameraScreenState extends State {
         });
 
         _initCameraController(cameras[selectedCameraIdx]).then((void v) {});
-      }else{
+      } else {
         print("No camera available");
       }
     }).catchError((err) {
@@ -144,9 +143,9 @@ class _CameraScreenState extends State {
     }
 
     return AspectRatio(
-        aspectRatio: controller.value.aspectRatio,
-        child: CameraPreview(controller),
-      );
+      aspectRatio: controller.value.aspectRatio,
+      child: CameraPreview(controller),
+    );
   }
 
   /// Display the control bar with buttons to take pictures
@@ -208,14 +207,13 @@ class _CameraScreenState extends State {
     // Take the Picture in a try / catch block. If anything goes wrong,
     // catch the error.
     try {
-
       XFile file = await controller.takePicture();
 
       // If the picture was taken, display it on a new screen
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => PreviewImageScreen(image: file),
+          builder: (context) => UnlockedMoodScreen(image: file),
         ),
       );
     } catch (e) {

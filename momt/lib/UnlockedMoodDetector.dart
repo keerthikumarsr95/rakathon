@@ -37,19 +37,26 @@ import 'package:flutter/material.dart';
 import 'package:googleapis_auth/auth_io.dart';
 import 'package:googleapis_auth/googleapis_auth.dart';
 import 'package:http/http.dart' as http;
+import 'package:momt/UI/pages/LoginNew.dart';
 import 'package:momt/enums/Mood.dart';
 import 'package:momt/services/request.dart';
 
-class PreviewImageScreen extends StatefulWidget {
+import 'UI/pages/MusicPlayer.dart';
+
+class UnlockedMoodScreen extends StatefulWidget {
   final XFile image;
 
-  PreviewImageScreen({required this.image});
+  UnlockedMoodScreen({required this.image});
 
   @override
-  _PreviewImageScreenState createState() => _PreviewImageScreenState();
+  _UnlockedMoodScreenState createState() => _UnlockedMoodScreenState();
 }
 
-class _PreviewImageScreenState extends State<PreviewImageScreen> {
+class _UnlockedMoodScreenState extends State<UnlockedMoodScreen> {
+  void navigateToProfile(BuildContext context) {
+    Navigator.push(context, MaterialPageRoute(builder: (_) => LoginNew()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,52 +64,59 @@ class _PreviewImageScreenState extends State<PreviewImageScreen> {
         title: Text('Preview'),
         backgroundColor: Colors.blueGrey,
       ),
-      body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Expanded(
-                flex: 2,
-                child: Image.file(File(widget.image.path), fit: BoxFit.cover)),
-            SizedBox(height: 10.0),
-            Flexible(
-              flex: 1,
-              child: Container(
-                padding: EdgeInsets.all(60.0),
-                child: RaisedButton(
-                  onPressed: () {
-                    getBytesFromFile().then((bytes) async {
-                      Map<String, String> header = {
-                        HttpHeaders.authorizationHeader:
-                            'Bearer ' + await getAuthToken()
-                      };
-
-                      var response = await Request.post(
-                          'https://vision.googleapis.com/v1/images:annotate',
-                          header, {
-                        "requests": [
-                          {
-                            "image": {
-                              "content": base64.encoder
-                                  .convert(bytes.buffer.asUint8List())
-                            },
-                            "features": [
-                              {"maxResults": 10, "type": "FACE_DETECTION"}
-                            ]
-                          }
-                        ]
-                      });
-                      parseEmotionsResponse(response);
-
-                      // Share the map to some db or service from here
-                    });
-                  },
-                  child: Text('Share'),
-                ),
-              ),
+      body: Center(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+            new Container(
+              height: 400,
+              child: Image.asset("assets/images/moodDetector.png"),
             ),
-          ],
+            new Text(
+              'Hello Pranav !',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
+            ),
+            new Text(
+              'Stressed out. Play music to refresh',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+            ),
+            new MusicPlayer()
+          ])),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          getBytesFromFile().then((bytes) async {
+            Map<String, String> header = {
+              HttpHeaders.authorizationHeader: 'Bearer ' + await getAuthToken()
+            };
+
+            var response = await Request.post(
+                'https://vision.googleapis.com/v1/images:annotate', header, {
+              "requests": [
+                {
+                  "image": {
+                    "content":
+                        base64.encoder.convert(bytes.buffer.asUint8List())
+                  },
+                  "features": [
+                    {"maxResults": 10, "type": "FACE_DETECTION"}
+                  ]
+                }
+              ]
+            });
+            parseEmotionsResponse(response);
+
+            // Share the map to some db or service from here
+          });
+
+          navigateToProfile(context);
+        },
+        tooltip: 'Next',
+        //label: const Text('Skip'),
+        child: Icon(
+          Icons.arrow_forward,
+          size: 40,
         ),
+        backgroundColor: Colors.deepPurple,
       ),
     );
   }
