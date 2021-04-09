@@ -28,6 +28,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   assets_audio_player: ^3.0.3+1
+  camera:
+  path_provider:
+  path:
+  googleapis_auth: ^1.1.0
+  http: ^0.13.1
+  dio: ^4.0.0
   page_view_indicator: ^2.0.4
 
 dev_dependencies:
