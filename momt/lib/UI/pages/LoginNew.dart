@@ -87,7 +87,7 @@ class ProfileCard extends StatelessWidget {
                 shape: BoxShape.circle,
                 color: colors[index],
               )),
-          Text(entries[index]..toUpperCase(),
+          Text(entries[index],
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   //color: Colors.white,

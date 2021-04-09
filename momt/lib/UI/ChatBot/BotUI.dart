@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:momt/UI/ChatBot/StreamService.dart';
+import 'package:momt/UI/pages/MusicPlayer.dart';
 import 'package:momt/conversation/conversationManager.dart';
 import 'package:momt/conversation/enums.dart';
 
@@ -30,8 +31,10 @@ class _ConversationalBotState extends State<ConversationalBot> {
     ChatMessage(messageContent: "Hello, Will", messageType: "receiver"),
     ChatMessage(messageContent: "How have you been?", messageType: "receiver"),
     ChatMessage(
-        messageContent: "Hey Kriss, I am doing fine dude. wbu?",
-        messageType: "sender"),
+        messageContent: "Maths?",
+        messageType: "sender",
+        mediaType: MediaType.audio,
+        mediaLink: "assets/images/q1.png"),
     ChatMessage(messageContent: "ehhhh, doing OK.", messageType: "receiver"),
     ChatMessage(
         messageContent: "Is there any thing wrong?", messageType: "sender"),
@@ -76,15 +79,52 @@ class _ConversationalBotState extends State<ConversationalBot> {
                       : Colors.blue[200]),
                 ),
                 padding: EdgeInsets.all(16),
-                child: Text(
-                  messages[index].messageContent,
-                  style: TextStyle(fontSize: 15),
-                ),
+                child: Message(index: index, msg: messages[index]),
               ),
             ),
           );
         },
       ),
     ]));
+  }
+}
+
+class Message extends StatelessWidget {
+  //const ProfileCard({Key? key}) : super(key: key);
+  final int index;
+  final ChatMessage msg;
+  //String mediaPath = "";
+  Message({required this.index, required this.msg}) {
+    //this.mediaPath = this.msg.mediaLink.toString();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (msg.mediaType == MediaType.image) {
+      return Container(
+          //padding: EdgeInsets.symmetric(vertical: 30),
+          height: 50,
+          width: 50,
+          child: Image.asset(msg.mediaLink.toString()));
+    } else if (msg.mediaType == MediaType.text) {
+      return Text(
+        msg.messageContent,
+        style: TextStyle(
+            fontWeight: FontWeight.bold,
+            //color: Colors.white,
+            fontSize: 15.0),
+      );
+    } else if (msg.mediaType == MediaType.audio) {
+      return MusicPlayer();
+    }
+    return Center(
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+          new Container(
+            height: 500,
+            child: Image.asset(msg.mediaLink.toString()),
+          )
+        ]));
   }
 }
