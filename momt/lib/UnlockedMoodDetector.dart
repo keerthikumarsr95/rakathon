@@ -61,8 +61,8 @@ class _UnlockedMoodScreenState extends State<UnlockedMoodScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Preview'),
-        backgroundColor: Colors.blueGrey,
+        title: Text("MomT"),
+        backgroundColor: Colors.deepPurple,
       ),
       body: Center(
           child: Column(
