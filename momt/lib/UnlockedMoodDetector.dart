@@ -103,6 +103,8 @@ class _UnlockedMoodScreenState extends State<UnlockedMoodScreen> {
                 }
               ]
             });
+            print(response.runtimeType);
+            print('respMsg $response');
             parseEmotionsResponse(response);
 
             // Share the map to some db or service from here
@@ -154,28 +156,28 @@ class _UnlockedMoodScreenState extends State<UnlockedMoodScreen> {
     return credentials.accessToken.data;
   }
 
-  Map<Mood, bool> parseEmotionsResponse(response) {
-    Map<Mood, bool> result = {};
+  List<Mood> parseEmotionsResponse(response) {
+    List<Mood> result = [];
 
     if (!response["responses"][0]["faceAnnotations"][0]["joyLikelihood"]
         .toString()
         .toUpperCase()
-        .contains("UNLIKELY")) result.putIfAbsent(Mood.JOY, () => true);
+        .contains("UNLIKELY")) result.add(Mood.JOY);
 
     if (!response["responses"][0]["faceAnnotations"][0]["sorrowLikelihood"]
         .toString()
         .toUpperCase()
-        .contains("UNLIKELY")) result.putIfAbsent(Mood.SORROW, () => true);
+        .contains("UNLIKELY")) result.add(Mood.SORROW);
 
     if (!response["responses"][0]["faceAnnotations"][0]["angerLikelihood"]
         .toString()
         .toUpperCase()
-        .contains("UNLIKELY")) result.putIfAbsent(Mood.ANGER, () => true);
+        .contains("UNLIKELY")) result.add(Mood.ANGER);
 
     if (!response["responses"][0]["faceAnnotations"][0]["surpriseLikelihood"]
         .toString()
         .toUpperCase()
-        .contains("UNLIKELY")) result.putIfAbsent(Mood.SURPRISE, () => true);
+        .contains("UNLIKELY")) result.add(Mood.SURPRISE);
 
     print(
         "Expression joyLikelihood ${response["responses"][0]["faceAnnotations"][0]["joyLikelihood"]}");
@@ -185,7 +187,7 @@ class _UnlockedMoodScreenState extends State<UnlockedMoodScreen> {
         "Expression angerLikelihood ${response["responses"][0]["faceAnnotations"][0]["angerLikelihood"]}");
     print(
         "Expression surpriseLikelihood ${response["responses"][0]["faceAnnotations"][0]["surpriseLikelihood"]}");
-    print(result);
+    print('Hi respo $result');
     return result;
   }
 }
