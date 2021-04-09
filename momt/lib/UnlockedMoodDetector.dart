@@ -53,9 +53,42 @@ class UnlockedMoodScreen extends StatefulWidget {
 }
 
 class _UnlockedMoodScreenState extends State<UnlockedMoodScreen> {
+  Mood _expression = Mood.SORROW;
+  String stressedMsg = "Stressed out. Play music to refresh";
+  String haapyMsg = "Let's start with your smile";
+
   void navigateToProfile(BuildContext context) {
     Navigator.push(context, MaterialPageRoute(builder: (_) => KidsDashboard()));
   }
+
+  void getExpression() => {
+        getBytesFromFile().then((bytes) async {
+          Map<String, String> header = {
+            HttpHeaders.authorizationHeader: 'Bearer ' + await getAuthToken()
+          };
+
+          var response = await Request.post(
+              'https://vision.googleapis.com/v1/images:annotate', header, {
+            "requests": [
+              {
+                "image": {
+                  "content": base64.encoder.convert(bytes.buffer.asUint8List())
+                },
+                "features": [
+                  {"maxResults": 10, "type": "FACE_DETECTION"}
+                ]
+              }
+            ]
+          });
+          print(response.runtimeType);
+          print('respMsg $response');
+          setState(() {
+            _expression = parseEmotionsResponse(response);
+          });
+
+          // Share the map to some db or service from here
+        })
+      };
 
   @override
   Widget build(BuildContext context) {
@@ -77,39 +110,14 @@ class _UnlockedMoodScreenState extends State<UnlockedMoodScreen> {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
             ),
             new Text(
-              'Stressed out. Play music to refresh',
+              _expression == Mood.JOY ? haapyMsg : stressedMsg,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
             ),
             new MusicPlayer()
           ])),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          getBytesFromFile().then((bytes) async {
-            Map<String, String> header = {
-              HttpHeaders.authorizationHeader: 'Bearer ' + await getAuthToken()
-            };
-
-            var response = await Request.post(
-                'https://vision.googleapis.com/v1/images:annotate', header, {
-              "requests": [
-                {
-                  "image": {
-                    "content":
-                        base64.encoder.convert(bytes.buffer.asUint8List())
-                  },
-                  "features": [
-                    {"maxResults": 10, "type": "FACE_DETECTION"}
-                  ]
-                }
-              ]
-            });
-            print(response.runtimeType);
-            print('respMsg $response');
-            parseEmotionsResponse(response);
-
-            // Share the map to some db or service from here
-          });
-
+          getExpression();
           navigateToProfile(context);
         },
         tooltip: 'Next',
@@ -156,7 +164,7 @@ class _UnlockedMoodScreenState extends State<UnlockedMoodScreen> {
     return credentials.accessToken.data;
   }
 
-  List<Mood> parseEmotionsResponse(response) {
+  Mood parseEmotionsResponse(response) {
     List<Mood> result = [];
 
     if (!response["responses"][0]["faceAnnotations"][0]["joyLikelihood"]
@@ -188,6 +196,6 @@ class _UnlockedMoodScreenState extends State<UnlockedMoodScreen> {
     print(
         "Expression surpriseLikelihood ${response["responses"][0]["faceAnnotations"][0]["surpriseLikelihood"]}");
     print('Hi respo $result');
-    return result;
+    return result.isEmpty ? Mood.ANGER : result[0];
   }
 }
