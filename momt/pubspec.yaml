@@ -53,6 +53,7 @@ flutter:
   assets:
     - assets/audios/
     - assets/images/
+    - assets/images/signIn/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

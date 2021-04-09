@@ -8,7 +8,7 @@ class AudioManager {
   }
 
   load(id) {
-    assetsAudioPlayer.open(Audio("assets/audios/audio_1.mp3"),
+    assetsAudioPlayer.open(Audio("assets/audios/happySong.mp3"),
         autoStart: false);
   }
 

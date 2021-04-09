@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:momt/UI/pages/Login.dart';
+import 'package:momt/UI/pages/LoginNew.dart';
 import 'package:momt/audio/audioManager.dart';
 
 class MoodDetector extends StatelessWidget {
   MoodDetector({Key? key}) : super(key: key);
 
   void navigateToProfile(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(builder: (_) => Login()));
+    Navigator.push(context, MaterialPageRoute(builder: (_) => LoginNew()));
   }
 
   @override
