@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
+import 'package:momt/UI/ChatBot/BotUI.dart';
+import 'package:momt/UI/ChatBot/StreamService.dart';
 import 'package:momt/audio/audioManager.dart';
 import 'package:momt/conversation/messages.dart';
 import 'package:momt/conversation/enums.dart';
@@ -14,6 +18,8 @@ class ConversationManager {
   static ConversationManager get instance => _singleton;
 
   // late AudioManager audioManager;
+
+  StreamSink<ChatMessage> messageSink = StreamService.instance.stateSink;
   TextToSpeechManager ttSManager = TextToSpeechManager.instance;
   SpeechToTextManager stTManager = SpeechToTextManager.instance;
   AudioManager audioManager = new AudioManager();
@@ -146,7 +152,10 @@ class ConversationManager {
     var mainActivity = MainActivity.reading;
     var subject = Subject.maths;
     var topic = Topic.numbers;
-
+    messageSink
+        .add(ChatMessage(messageContent: "OOh hoo", messageType: "sender"));
+    messageSink
+        .add(ChatMessage(messageContent: "Yaa", messageType: "receiver"));
     await greetUser(user);
     await speakMoodMessage(mood);
     Map res = await getUserResponse(activity);

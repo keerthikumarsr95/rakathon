@@ -10,7 +10,7 @@ class AudioManager {
     assetsAudioPlayer = AssetsAudioPlayer.withId("0");
   }
 
-  load(id) async {
+  Future load(id) async {
     audDuration = Duration(seconds: 136);
     var audio = Audio("assets/audios/audio_$id.mp3");
     print("audio $audio");
@@ -41,6 +41,7 @@ class AudioManager {
 
   Future awaitToComplete() async {
     Completer c = new Completer();
+    print("audDuration $audDuration");
     assetsAudioPlayer.currentPosition.listen((Duration state) {
       print("playlistFinished State ${state.inSeconds}");
       print("playlistFinished c.isCompleted ${c.isCompleted}");
