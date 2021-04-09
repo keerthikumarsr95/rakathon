@@ -82,7 +82,7 @@ class ProfileCard extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 30),
               width: 120.0,
               height: 120.0,
-              child: Image.asset('assets/images/signIn/${entries[index]}.png'),
+              child: Image.asset('assets/images/${entries[index]}.png'),
               decoration: new BoxDecoration(
                 shape: BoxShape.circle,
                 color: colors[index],

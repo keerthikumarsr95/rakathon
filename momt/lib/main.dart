@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:momt/UI/pages/WelcomePage.dart';
-//import 'dart:developer' as developer;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

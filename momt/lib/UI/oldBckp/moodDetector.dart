@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:momt/UI/pages/LoginNew.dart';
 
-import 'MusicPlayer.dart';
+import '../pages/MusicPlayer.dart';
 
 class MoodDetector extends StatelessWidget {
   MoodDetector({Key? key}) : super(key: key);

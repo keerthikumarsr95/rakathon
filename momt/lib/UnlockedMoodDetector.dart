@@ -37,7 +37,7 @@ import 'package:flutter/material.dart';
 import 'package:googleapis_auth/auth_io.dart';
 import 'package:googleapis_auth/googleapis_auth.dart';
 import 'package:http/http.dart' as http;
-import 'package:momt/UI/pages/LoginNew.dart';
+import 'package:momt/UI/pages/kidsDashoard.dart';
 import 'package:momt/enums/Mood.dart';
 import 'package:momt/services/request.dart';
 
@@ -54,7 +54,7 @@ class UnlockedMoodScreen extends StatefulWidget {
 
 class _UnlockedMoodScreenState extends State<UnlockedMoodScreen> {
   void navigateToProfile(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(builder: (_) => LoginNew()));
+    Navigator.push(context, MaterialPageRoute(builder: (_) => KidsDashboard()));
   }
 
   @override
@@ -73,7 +73,7 @@ class _UnlockedMoodScreenState extends State<UnlockedMoodScreen> {
               child: Image.asset("assets/images/moodDetector.png"),
             ),
             new Text(
-              'Hello Pranav !',
+              'Hello Vishva !',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
             ),
             new Text(
