@@ -12,7 +12,7 @@ enum Subject { maths }
 
 enum Topic { numbers }
 
-enum Activity { playMusic, reading }
+enum Activity { playMusic, reading, questions }
 
 enum Status { success, failure }
 
