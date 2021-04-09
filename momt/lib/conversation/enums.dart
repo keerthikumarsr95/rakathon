@@ -1,6 +1,6 @@
-enum Mood {sorrow, joy, anger, surprise}
+enum Mood { sorrow, joy, anger, surprise }
 
-enum MainActivity{reading}
+enum MainActivity { reading }
 
 // extension ConversationManager on MainActivity {
 //   String toShortString() {
@@ -8,10 +8,12 @@ enum MainActivity{reading}
 //   }
 // }
 
-enum Subject{maths}
+enum Subject { maths }
 
-enum Topic{numbers}
+enum Topic { numbers }
 
-enum Activity {playMusic, reading}
+enum Activity { playMusic, reading }
 
-enum Status{success, failure}
+enum Status { success, failure }
+
+enum MediaType { text, image, audio }
