@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:momt/UI/ChatBot/BotUI.dart';
 
-class KidsDashboard extends StatelessWidget {
-  void navigateToProfile(BuildContext context) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (_) => ConversationalBot()));
-  }
+class MomDashboard extends StatelessWidget {
+  // void navigateToProfile(BuildContext context) {
+  //   Navigator.push(
+  //       context, MaterialPageRoute(builder: (_) => ConversationalBot()));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +22,14 @@ class KidsDashboard extends StatelessWidget {
               fillColor: Colors.deepPurple,
               child: Image.asset('assets/images/momtBot.png', fit: BoxFit.fill),
               onPressed: () {
-                navigateToProfile(context);
+                // navigateToProfile(context);
               },
             )),
       ),
       body: ListView(
         children: [
           Image.asset(
-            "assets/images/kids_dashboard.jpg",
+            "assets/images/momDashboard.jpg",
             fit: BoxFit.fitWidth,
             // width: 720,
           ),

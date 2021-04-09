@@ -155,7 +155,7 @@ class ConversationManager {
           if (message?.isEmpty == true || message == null) {
             return {'state': Status.success};
           }
-          return message?.contains(ques?['ANS']) == true
+          return message?.contains(ques?['ANS'] ?? '') == true
               ? {'state': Status.success}
               : {'state': Status.failure};
         }

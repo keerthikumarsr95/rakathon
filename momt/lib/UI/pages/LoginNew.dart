@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:momt/UI/pages/faceDetector.dart';
+import 'package:momt/UI/pages/momDashboard.dart';
 
 class LoginNew extends StatelessWidget {
-  void navigateToProfile(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(builder: (_) => FaceDetector()));
+  void navigateToProfile(BuildContext context, index) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => index == 2 ? FaceDetector() : MomDashboard()));
   }
 
   @override
@@ -44,7 +48,7 @@ class LoginNew extends StatelessWidget {
             children: List.generate(4, (index) {
               return GestureDetector(
                   onTap: () {
-                    if (index == 2) navigateToProfile(context);
+                    navigateToProfile(context, index);
                   },
                   child: ProfileCard(index: index));
             }),

@@ -47,45 +47,63 @@ class _ConversationalBotState extends State<ConversationalBot> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text("MomT"),
+          backgroundColor: Colors.deepPurple.shade50,
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+        floatingActionButton: Padding(
+          padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
+          child: Container(
+              width: 80.0,
+              height: 80.0,
+              child: new RawMaterialButton(
+                elevation: 2.0,
+                shape: new CircleBorder(),
+                fillColor: Colors.deepPurple,
+                child:
+                    Image.asset('assets/images/momtBot.png', fit: BoxFit.fill),
+                onPressed: () {
+                  // navigateToProfile(context);
+                },
+              )),
+        ),
         body: Stack(children: <Widget>[
-      ListView.builder(
-        itemCount: messages.length,
-        shrinkWrap: true,
-        padding: EdgeInsets.only(top: 10, bottom: 10),
-        // physics: NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) {
-          return Container(
-            padding: EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 10),
-            child: Align(
-              alignment: (messages[index].messageType == "receiver"
-                  ? Alignment.topLeft
-                  : Alignment.topRight),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: (messages[index].messageType == "receiver"
-                      ? Colors.grey.shade200
-                      : Colors.blue[200]),
+          ListView.builder(
+            itemCount: messages.length,
+            shrinkWrap: true,
+            padding: EdgeInsets.only(top: 10, bottom: 10),
+            // physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return Container(
+                padding:
+                    EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 10),
+                child: Align(
+                  alignment: (messages[index].messageType == "receiver"
+                      ? Alignment.topLeft
+                      : Alignment.topRight),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: (messages[index].messageType == "receiver"
+                          ? Colors.grey.shade200
+                          : Colors.blue[200]),
+                    ),
+                    padding: EdgeInsets.all(16),
+                    child: Message(index: index, msg: messages[index]),
+                  ),
                 ),
-                padding: EdgeInsets.all(16),
-                child: Message(index: index, msg: messages[index]),
-              ),
-            ),
-          );
-        },
-      ),
-    ]));
+              );
+            },
+          ),
+        ]));
   }
 }
 
 class Message extends StatelessWidget {
-  //const ProfileCard({Key? key}) : super(key: key);
   final int index;
   final ChatMessage msg;
-  //String mediaPath = "";
-  Message({required this.index, required this.msg}) {
-    //this.mediaPath = this.msg.mediaLink.toString();
-  }
+  Message({required this.index, required this.msg});
 
   @override
   Widget build(BuildContext context) {

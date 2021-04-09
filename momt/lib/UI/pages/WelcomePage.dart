@@ -11,9 +11,10 @@ class Pages {
 }
 
 List<Pages> pglist = [
-  Pages("Hello", "I'm Momt", "Your digital buddy"),
-  Pages("Education Partner", "", "Study, Assignments, Progress at one place"),
-  Pages("Fun partner", "", "Fun interaction considering hobbies, mood, routine")
+  Pages("Hello", "I'm Momt", "Child's digital companion"),
+  Pages(
+      "Mom's Assistant", "", "Track child's activities, progress at one place"),
+  Pages("Teacher's  Associate", "", "Manage assignments, schedules & more")
 ];
 
 class WelcomeNew extends StatelessWidget {
