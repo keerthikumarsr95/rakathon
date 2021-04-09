@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:momt/UI/pages/moodDetector.dart';
+//import 'package:momt/UI/pages/moodDetector.dart';
+import 'package:momt/CameraScreen.dart';
 
 class FaceDetector extends StatelessWidget {
   void navigateToProfile(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(builder: (_) => MoodDetector()));
+    Navigator.push(context, MaterialPageRoute(builder: (_) => CameraScreen()));
   }
 
   @override
