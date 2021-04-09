@@ -37,6 +37,7 @@ dependencies:
   http: ^0.13.1
   dio: ^4.0.0
   page_view_indicator: ^2.0.4
+  emojis: ^0.9.3
 
 dev_dependencies:
   flutter_test:

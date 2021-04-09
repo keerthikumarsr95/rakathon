@@ -47,8 +47,9 @@ class SpeechToTextManager {
     print("SpeechRecognitionResult $result");
   }
 
-  listen() async {
-    var res = await speech.listen(onResult: _resultListener, listenFor: Duration(seconds: 5));
+  listen(timeout) async {
+    var res = await speech.listen(
+        onResult: _resultListener, listenFor: Duration(seconds: timeout));
     print("sst listen res $res");
 
     state = SstState.listening;
