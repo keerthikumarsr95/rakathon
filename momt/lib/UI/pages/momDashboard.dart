@@ -29,7 +29,7 @@ class MomDashboard extends StatelessWidget {
       body: ListView(
         children: [
           Image.asset(
-            "assets/images/momDashboard.jpg",
+            "assets/images/momDashboard2.png",
             fit: BoxFit.fitWidth,
             // width: 720,
           ),

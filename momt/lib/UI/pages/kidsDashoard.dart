@@ -29,7 +29,7 @@ class KidsDashboard extends StatelessWidget {
       body: ListView(
         children: [
           Image.asset(
-            "assets/images/kids_dashboard.jpg",
+            "assets/images/kidsDashboard.png",
             fit: BoxFit.fitWidth,
             // width: 720,
           ),

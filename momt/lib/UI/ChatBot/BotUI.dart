@@ -48,8 +48,11 @@ class _ConversationalBotState extends State<ConversationalBot> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("MomT"),
-          backgroundColor: Colors.deepPurple.shade50,
+          title: Text(
+            "MomT",
+            style: TextStyle(color: Colors.deepPurple),
+          ),
+          backgroundColor: Colors.deepPurple.shade100,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
         floatingActionButton: Padding(
@@ -77,7 +80,7 @@ class _ConversationalBotState extends State<ConversationalBot> {
             itemBuilder: (context, index) {
               return Container(
                 padding:
-                    EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 10),
+                    EdgeInsets.only(left: 14, right: 14, top: 8, bottom: 8),
                 child: Align(
                   alignment: (messages[index].messageType == "receiver"
                       ? Alignment.topLeft
@@ -85,11 +88,11 @@ class _ConversationalBotState extends State<ConversationalBot> {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: (messages[index].messageType == "receiver"
-                          ? Colors.grey.shade200
-                          : Colors.blue[200]),
+                      // color: (messages[index].messageType == "receiver"
+                      //     ? Colors.grey.shade200
+                      //     : Colors.blue[200]),
                     ),
-                    padding: EdgeInsets.all(16),
+                    padding: EdgeInsets.all(12),
                     child: Message(index: index, msg: messages[index]),
                   ),
                 ),
@@ -110,16 +113,16 @@ class Message extends StatelessWidget {
     if (msg.mediaType == MediaType.image) {
       return Container(
           //padding: EdgeInsets.symmetric(vertical: 30),
-          height: 50,
-          width: 50,
+          height: 120,
+          width: 120,
           child: Image.asset(msg.mediaLink.toString()));
     } else if (msg.mediaType == MediaType.text) {
       return Text(
         msg.messageContent,
         style: TextStyle(
             fontWeight: FontWeight.bold,
-            //color: Colors.white,
-            fontSize: 15.0),
+            color: msg.messageType == "receiver" ? Colors.black87 : Colors.pink,
+            fontSize: 16.0),
       );
     } else if (msg.mediaType == MediaType.audio) {
       return MusicPlayer();
