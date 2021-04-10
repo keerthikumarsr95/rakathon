@@ -26,7 +26,7 @@ class MomNotification extends StatelessWidget {
                 children: <Widget>[
               new Container(
                 height: 400,
-                child: Image.asset("assets/images/q6.png"),
+                child: Image.asset("assets/images/s2.png"),
               ),
               new Container(
                   child: Text(
@@ -38,9 +38,11 @@ class MomNotification extends StatelessWidget {
                     fontFamily: 'RakutenRg'),
               )),
               new Padding(
-                padding: EdgeInsets.all(60),
+                padding:
+                    EdgeInsets.only(top: 10, left: 60, right: 60, bottom: 65),
                 child: Text(
                   'Congratulations! Your child received golden star in Maths test ',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20.0,
