@@ -7,7 +7,11 @@ class LoginNew extends StatelessWidget {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (_) => index == 2 ? FaceDetector() : MomDashboard()));
+            builder: (_) => index == 2
+                ? FaceDetector()
+                : index == 1
+                    ? MomDashboard()
+                    : LoginNew()));
   }
 
   @override
