@@ -45,7 +45,7 @@ Map<String, Map> messages = {
   'ANS_FAILURE': {'A_1': "That's the right answer. Good Job!!"},
   'ACTIVITY_RESPONSE_KEYS': {
     Activity.playMusic: {
-      Status.success: ['yes', 'okay'],
+      Status.success: ['yes', 'okay', 'back', 'yeah', 'cool', 'ookay'],
       Status.failure: ['no', 'skip']
     },
     MainActivity.reading: {
@@ -59,28 +59,28 @@ Map<String, Map> messages = {
       'PRO_Q': ["5+2 =? got an answer?", "write a answer in the notebook."],
       'ASSET_LINK': ["assets/images/q1.png"],
       'ANS': "7",
-      'SUCCESS': 'good job. next exercise',
-      'FAILURE"': "No __USER__, Try one more time"
+      'SUCCESS': 'Good job. Next exercise',
+      'FAILURE': "Wrong ${Emojis.crossMark} __USER__, Try one more time"
     },
     'Q_2': {
       'PRE_Q': ["Exercise 2:"],
       'PRO_Q': ["2+2 =?"],
       'ASSET_LINK': ["assets/images/q2.png"],
       'ANS': "4",
-      'SUCCESS': 'good. next Exercise',
-      "FAILURE": "No __USER__, Try one more time"
+      'SUCCESS': 'Awesome. Next Exercise',
+      'FAILURE': "Wrong ${Emojis.crossMark} __USER__, Try one more time"
     },
     'Q_3': {
       'PRE_Q': ["Exercise 3:", "choose the correct answer."],
       'PRO_Q': [],
       'ASSET_LINK': [
         "assets/images/q3.png",
-        "assets/images/q4.png",
-        "assets/images/q5.png"
+        "assets/images/q2.png",
+        // "assets/images/q5.png"
       ],
-      'ANS': "4",
+      'ANS': "7",
       'SUCCESS': 'Correct Answer __USER__. well done',
-      "FAILURE": "No __USER__, Try one more time"
+      'FAILURE': "Wrong ${Emojis.crossMark} __USER__, Try one more time"
     },
   },
   "ACTIVITY_MESSAGE_EMP": {
@@ -90,7 +90,11 @@ Map<String, Map> messages = {
     "SNACKS_3": "Great, Let's get started then. ",
   },
   'CLOSING': {
-    "M_1": "collect your star medal.",
-    "M_2": "See you tomorrow, bye! good night."
+    "M_1": "Collect your star medal.",
+    "M_2": "See you tomorrow, bye!."
   },
+  "RETRY_MESSAGE":{
+    'MESSAGE': "Sorry i did not get your input, Lets try again."
+  }
+
 };
