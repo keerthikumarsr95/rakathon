@@ -36,7 +36,7 @@ class LoginNew extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                           fontSize: 30.0,
-                          fontFamily: 'Open Sans')),
+                          fontFamily: 'RakutenRg')),
                 ]),
           ),
           new GridView.count(
@@ -93,6 +93,7 @@ class ProfileCard extends StatelessWidget {
               )),
           Text(entries[index],
               style: TextStyle(
+                  fontFamily: 'RakutenRg',
                   fontWeight: FontWeight.bold,
                   //color: Colors.white,
                   fontSize: 20.0)),

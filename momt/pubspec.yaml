@@ -49,10 +49,19 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   fonts:
-    - family: Open Sans
+    - family: OpenSans
       fonts:
         - asset: assets/fonts/open-sans.semibold.ttf
+          weight: 900
           style: italic
+    - family: RakutenBd
+      fonts:
+        - asset: assets/fonts/RakutenRounded_A_Bd.ttf
+          weight: 900
+    - family: RakutenRg
+      fonts:
+        - asset: assets/fonts/RakutenRounded_A_Rg.ttf
+          weight: 900
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

@@ -11,7 +11,7 @@ class Pages {
 }
 
 List<Pages> pglist = [
-  Pages("Hello", "I'm Momt", "Child's digital companion"),
+  Pages("Hello!", "I'm MomT", "Child's digital companion"),
   Pages(
       "Mom's Assistant", "", "Track child's activities, progress at one place"),
   Pages("Teacher's  Associate", "", "Manage assignments, schedules & more")
@@ -85,20 +85,23 @@ class WelcomeNew extends StatelessWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
-                          fontSize: 50.0,
-                          fontFamily: 'Open Sans')),
-                  new Text(page.heading,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black87,
-                          fontSize: 25.0,
-                          fontFamily: 'Open Sans')),
+                          fontSize: 40.0,
+                          fontFamily: 'RakutenBd')),
+                  new Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: Text(page.heading,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black87,
+                            fontSize: 25.0,
+                            fontFamily: 'RakutenRg')),
+                  ),
                   new Text(page.description,
                       style: TextStyle(
                           fontWeight: FontWeight.w400,
                           color: Colors.black87,
-                          fontSize: 25.0,
-                          fontFamily: 'Open Sans'))
+                          fontSize: 22.0,
+                          fontFamily: 'RakutenRg'))
                 ],
               ),
             ],
