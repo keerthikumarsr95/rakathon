@@ -11,7 +11,7 @@ class StreamService {
 
   static StreamService get instance => _singleton;
 
-  StreamController<ChatMessage> controller = StreamController();
+  StreamController<ChatMessage> controller = StreamController.broadcast();
 
   Stream<ChatMessage> get stateStream => controller.stream;
 

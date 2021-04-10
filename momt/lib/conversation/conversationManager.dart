@@ -38,6 +38,7 @@ class ConversationManager {
   TextToSpeechManager ttSManager = TextToSpeechManager.instance;
   SpeechToTextManager stTManager = SpeechToTextManager.instance;
   AudioManager audioManager = new AudioManager();
+  String userName = '';
 
   Future speakRetryMessage() async {
     var message = messages['RETRY_MESSAGE']?['MESSAGE'];
@@ -51,13 +52,14 @@ class ConversationManager {
     var canBreak = false;
     var result;
     while (!canBreak) {
-      if (tries > 0) {
+      if (tries > 0 && result['state'] != Status.retry) {
         await speakRetryMessage();
       }
       tries += 1;
       result = await func();
       print("result $result");
-      if (result['state'] != Status.noInput) {
+      if (result['state'] != Status.noInput &&
+          result['state'] != Status.retry) {
         canBreak = true;
       }
       if (retries <= tries) {
@@ -121,9 +123,9 @@ class ConversationManager {
         messageType: "sender",
         mediaType: MediaType.audio,
         mediaLink: "assets/audios/audio_$audioId.mp3"));
-    await audioManager.load(audioId);
-    await audioManager.play();
-    await audioManager.awaitToComplete();
+    // await audioManager.load(audioId);
+    // await audioManager.play();
+    // await audioManager.awaitToComplete();
   }
 
   speakActivityCompletionMessage(Activity activity, Mood mood) async {
@@ -175,10 +177,10 @@ class ConversationManager {
 
   Future<String> listenToSpeech(timeOut) async {
     await stTManager.listen(timeOut);
-    return Future.delayed(Duration(seconds: 3), () => stTManager.stop());
+    return Future.delayed(Duration(seconds: timeOut), () => stTManager.stop());
   }
 
-  Map? processUserResponse(type, String? message, Map? ques) {
+  Future<Map?> processUserResponse(type, String? message, Map? ques) async {
     print("user response message: $message, type: $type");
     switch (type) {
       case Activity.playMusic:
@@ -206,9 +208,12 @@ class ConversationManager {
           }
           messageSink.add(
               ChatMessage(messageContent: message, messageType: "receiver"));
-          return message?.contains(ques?['ANS'] ?? '') == true
+          print("ques?['ANS'] ${ques?['ANS']}");
+          var result = message?.contains(ques?['ANS'] ?? '-') == true
               ? {'state': Status.success}
-              : {'state': Status.failure};
+              : {'state': Status.retry};
+          await appreciate(result, ques);
+          return result;
         }
         break;
       default:
@@ -231,7 +236,7 @@ class ConversationManager {
     await speakActivityMessage(activity);
     await speakActivityMoodMessage(user, activity, mood);
     await playMusic();
-    // await Future.delayed(Duration(seconds: 30));
+    await Future.delayed(Duration(seconds: 8));
     await speakActivityCompletionMessage(activity, mood);
   }
 
@@ -253,7 +258,7 @@ class ConversationManager {
     });
     await ttSManager.speak("Exercise $index");
     await ttSManager.speak("What is the result of addition?");
-    return getUserResponse(Activity.questions);
+    return getUserResponse(Activity.questions, ques: ques);
   }
 
   Future speakMessageAndGetRes(message) async {
@@ -275,7 +280,7 @@ class ConversationManager {
         messageContent: "",
         messageType: "sender",
         mediaType: MediaType.image,
-        mediaLink: "assets/images/s_1.png"));
+        mediaLink: "assets/images/s1.png"));
     if (res['state'] == Status.success) {
       var res = await speakMessageAndGetRes(activity['SNACKS_2']);
       if (res['state'] == Status.success) {
@@ -293,11 +298,11 @@ class ConversationManager {
         messageContent: "",
         messageType: "sender",
         mediaType: MediaType.image,
-        mediaLink: "assets/images/s_2.png"));
+        mediaLink: "assets/images/s2.png"));
     await speakMessage(activity['M_1']);
+    await speakMessage(activity['M_2']);
     messageSink.add(
         ChatMessage(messageContent: "", messageType: "sender", isExit: true));
-    await speakMessage(activity['M_2']);
   }
 
   runMainActivity2(
@@ -319,18 +324,15 @@ class ConversationManager {
 
   start() async {
     try {
-      var user = "Keerthi";
+      var user = "Vishwa";
       var mood = Mood.sorrow;
       var activity = Activity.playMusic;
       var mainActivity = MainActivity.reading;
       var subject = Subject.maths;
       var topic = Topic.numbers;
-      messageSink
-          .add(ChatMessage(messageContent: "OOh hoo", messageType: "sender"));
-      messageSink
-          .add(ChatMessage(messageContent: "Yaa", messageType: "receiver"));
-      await greetUser(user);
+      this.userName = user;
 
+      await greetUser(user);
       Map res = await speakMoodMessageAndGetResp(mood, activity, 3);
       if (res['state'] == Status.success) {
         //:TODO switch to NextScreen
@@ -344,5 +346,16 @@ class ConversationManager {
             messageType: "sender"));
       }
     }
+  }
+
+  Future appreciate(result, ques) async {
+    var message =
+        result['state'] == Status.success ? ques['SUCCESS'] : ques['FAILURE'];
+    print("ques $ques");
+    print("message $message");
+    message = message.replaceAll('__USER__', this.userName);
+    messageSink
+        .add(ChatMessage(messageContent: message, messageType: "sender"));
+    await ttSManager.speak(message);
   }
 }
