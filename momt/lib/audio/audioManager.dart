@@ -41,12 +41,13 @@ class AudioManager {
 
   Future awaitToComplete() async {
     Completer c = new Completer();
-    print("audDuration $audDuration");
+    print("audDuration ${audDuration?.inSeconds}");
+    var audSeconds = audDuration?.inSeconds ?? 0;
     assetsAudioPlayer.currentPosition.listen((Duration state) {
       print("playlistFinished State ${state.inSeconds}");
       print("playlistFinished c.isCompleted ${c.isCompleted}");
 
-      if (state.inSeconds == audDuration?.inSeconds && !c.isCompleted)
+      if (state.inSeconds == (audSeconds - 1) && !c.isCompleted)
         c.complete(state);
     });
     return c.future;

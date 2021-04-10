@@ -30,17 +30,27 @@ class _ConversationalBotState extends State<ConversationalBot> {
 
   StreamService streamService = StreamService.instance;
 
+
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    streamService.stateStream.listen((event) {
+    streamSub = streamService.stateStream.listen((event) {
       setState(() {
         messages.add(event);
       });
     });
     Future.delayed(
         Duration(seconds: 5), () => ConversationManager.instance.start());
+  }
+
+  late StreamSubscription streamSub;
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    streamSub.cancel();
   }
 
   @override

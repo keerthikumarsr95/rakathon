@@ -93,4 +93,8 @@ Map<String, Map> messages = {
     "M_1": "collect your star medal.",
     "M_2": "See you tomorrow, bye! good night."
   },
+  "RETRY_MESSAGE":{
+    'MESSAGE': "Sorry i did not get your input, Lets try again."
+  }
+
 };

@@ -14,6 +14,6 @@ enum Topic { numbers }
 
 enum Activity { playMusic, reading, questions }
 
-enum Status { success, failure }
+enum Status { success, failure, noInput }
 
 enum MediaType { text, image, audio }
