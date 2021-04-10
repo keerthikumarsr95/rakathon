@@ -73,6 +73,7 @@ class ProfileCard extends StatelessWidget {
                                   'assets/images/${entries[index]}.png'))))),
               Text(entries[index],
                   style: TextStyle(
+                      fontFamily: 'RakutenRg',
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                       fontSize: 20.0)),
