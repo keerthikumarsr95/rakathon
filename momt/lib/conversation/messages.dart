@@ -57,7 +57,7 @@ Map<String, Map> messages = {
     'Q_1': {
       'PRE_Q': ["Exercise 1:"],
       'PRO_Q': ["5+2 =? got an answer?", "write a answer in the notebook."],
-      'ASSET_LINK': ["assets/images/q_1.png"],
+      'ASSET_LINK': ["assets/images/q1.png"],
       'ANS': "7",
       'SUCCESS': 'good job. next exercise',
       'FAILURE"': "No __USER__, Try one more time"
@@ -65,7 +65,7 @@ Map<String, Map> messages = {
     'Q_2': {
       'PRE_Q': ["Exercise 2:"],
       'PRO_Q': ["2+2 =?"],
-      'ASSET_LINK': ["assets/images/q_2.png"],
+      'ASSET_LINK': ["assets/images/q2.png"],
       'ANS': "4",
       'SUCCESS': 'good. next Exercise',
       "FAILURE": "No __USER__, Try one more time"
@@ -74,9 +74,9 @@ Map<String, Map> messages = {
       'PRE_Q': ["Exercise 3:", "choose the correct answer."],
       'PRO_Q': [],
       'ASSET_LINK': [
-        "assets/images/q_3.png",
-        "assets/images/q_4.png",
-        "assets/images/q_5.png"
+        "assets/images/q3.png",
+        "assets/images/q4.png",
+        "assets/images/q5.png"
       ],
       'ANS': "4",
       'SUCCESS': 'Correct Answer __USER__. well done',
