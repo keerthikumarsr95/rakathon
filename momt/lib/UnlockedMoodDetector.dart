@@ -54,7 +54,7 @@ class UnlockedMoodScreen extends StatefulWidget {
 
 class _UnlockedMoodScreenState extends State<UnlockedMoodScreen> {
   Mood _expression = Mood.SORROW;
-  String stressedMsg = "Stressed out. Play music to refresh";
+  String stressedMsg = "You look good today";
   String haapyMsg = "Let's start with your smile";
 
   void navigateToProfile(BuildContext context) {
@@ -107,27 +107,42 @@ class _UnlockedMoodScreenState extends State<UnlockedMoodScreen> {
             ),
             new Text(
               'Hello Vishva !',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30.0,
+                  fontFamily: 'RakutenRg'),
             ),
-            new Text(
-              _expression == Mood.JOY ? haapyMsg : stressedMsg,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+            new Padding(
+              padding: EdgeInsets.only(bottom: 60),
+              child: Text(
+                _expression == Mood.JOY ? haapyMsg : stressedMsg,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0,
+                    fontFamily: 'RakutenRg'),
+              ),
             ),
-            new MusicPlayer()
+            //new MusicPlayer()
           ])),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Container(
+          //width: 100,
+          child: FloatingActionButton.extended(
         onPressed: () {
           getExpression();
           navigateToProfile(context);
         },
-        tooltip: 'Next',
-        //label: const Text('Skip'),
-        child: Icon(
-          Icons.arrow_forward,
-          size: 40,
+        label: Text(
+          'NEXT',
+          style: TextStyle(fontSize: 20.0),
         ),
+        //label: const Text('Skip'),
+        // icon: Icon(
+        //   Icons.face_unlock_rounded,
+        //   size: 40,
+        // ),
         backgroundColor: Colors.deepPurple,
-      ),
+      )),
     );
   }
 

@@ -36,7 +36,7 @@ class FaceDetector extends StatelessWidget {
           },
           label: Text(
             'Scan to Start',
-            style: TextStyle(fontSize: 20.0),
+            style: TextStyle(fontFamily: 'RakutenRg', fontSize: 20.0),
           ),
           //label: const Text('Skip'),
           icon: Icon(

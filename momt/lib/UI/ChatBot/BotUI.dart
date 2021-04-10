@@ -50,7 +50,7 @@ class _ConversationalBotState extends State<ConversationalBot> {
         appBar: AppBar(
           title: Text(
             "MomT",
-            style: TextStyle(color: Colors.deepPurple),
+            style: TextStyle(color: Colors.deepPurple, fontFamily: 'RakutenRg'),
           ),
           backgroundColor: Colors.deepPurple.shade100,
         ),
@@ -120,6 +120,7 @@ class Message extends StatelessWidget {
       return Text(
         msg.messageContent,
         style: TextStyle(
+            fontFamily: 'RakutenRg',
             fontWeight: FontWeight.bold,
             color: msg.messageType == "receiver" ? Colors.black87 : Colors.pink,
             fontSize: 16.0),
