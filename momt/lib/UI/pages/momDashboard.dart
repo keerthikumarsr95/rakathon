@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:momt/UI/ChatBot/BotUI.dart';
+import 'package:momt/UI/pages/momNotification.dart';
 
 class MomDashboard extends StatelessWidget {
-  // void navigateToProfile(BuildContext context) {
-  //   Navigator.push(
-  //       context, MaterialPageRoute(builder: (_) => ConversationalBot()));
-  // }
+  void navigateToProfile(BuildContext context) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (_) => MomNotification()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class MomDashboard extends StatelessWidget {
               fillColor: Colors.deepPurple,
               child: Image.asset('assets/images/momtBot.png', fit: BoxFit.fill),
               onPressed: () {
-                // navigateToProfile(context);
+                navigateToProfile(context);
               },
             )),
       ),
