@@ -19,7 +19,7 @@ class TextToSpeechManager {
   // TextToSpeechManager()
 
   _init() async {
-    // await flutterTts.setLanguage("en-IN");
+    await flutterTts.setLanguage("en-IN");
     // await flutterTts.setSpeechRate(0.7);
     // await flutterTts.setPitch(1.0);
     print('Voices');

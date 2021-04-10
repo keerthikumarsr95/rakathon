@@ -30,18 +30,41 @@ class _ConversationalBotState extends State<ConversationalBot> {
   List<ChatMessage> messages = [];
 
   StreamService streamService = StreamService.instance;
+  bool isStreaming = false;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    streamService.stateStream.listen((event) {
+    _init();
+  }
+
+  Future _init() async {
+    print("isStreaming 1 $isStreaming");
+    if (isStreaming) {
+      await streamSub.cancel();
+      isStreaming = false;
+    }
+    print("isStreaming 2 $isStreaming");
+    streamSub = streamService.stateStream.listen((event) {
       setState(() {
         messages.add(event);
       });
     });
+    isStreaming = true;
+    print("isStreaming 3 $isStreaming");
     Future.delayed(
-        Duration(seconds: 5), () => ConversationManager.instance.start());
+        Duration(seconds: 1), () => ConversationManager.instance.start());
+  }
+
+  late StreamSubscription streamSub;
+
+  @override
+  Future<void> dispose() async {
+    // TODO: implement dispose
+    super.dispose();
+    await streamSub.cancel();
+    isStreaming = false;
   }
 
   @override
@@ -106,6 +129,7 @@ class _ConversationalBotState extends State<ConversationalBot> {
 class Message extends StatelessWidget {
   final int index;
   final ChatMessage msg;
+
   Message({required this.index, required this.msg});
 
   @override
